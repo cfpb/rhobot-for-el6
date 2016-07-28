@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x #echo on
 
 RHOBOTVERSION=0.2
 sed -i -e s#"RHOBOTVERSION"#"${RHOBOTVERSION}"#g rhobot.spec
