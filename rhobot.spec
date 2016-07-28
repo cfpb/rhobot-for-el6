@@ -1,5 +1,5 @@
 Name:           rhobot
-Version:        0.1
+Version:        RHOBOTVERSION
 Release:        1
 Summary:        a database devops command line tool
 License:        GPLv3+
@@ -47,4 +47,3 @@ install -p -m 0755 ./rhobot %{buildroot}%{_bindir}/rhobot
 ## TODO create these files for rhobot rpm repo
 #%doc AUTHORS CHANGELOG.md CONTRIBUTING.md FIXME LICENSE MAINTAINERS NOTICE README.md
 %{_bindir}/rhobot
-
