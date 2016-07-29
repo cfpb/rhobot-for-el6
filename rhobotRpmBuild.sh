@@ -7,6 +7,7 @@ sed -i -e s#"RHOBOTVERSION"#"${RHOBOTVERSION}"#g rhobot.spec
 cp -rpf -R ../rhobot rhobot-${RHOBOTVERSION}/
 tar -czf rhobot-${RHOBOTVERSION}.tar.gz rhobot-${RHOBOTVERSION}/
 
+rm -rf rpmbuild
 mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 cp rhobot.spec rpmbuild/SPECS/rhobot.spec
 mv rhobot-${RHOBOTVERSION}.tar.gz rpmbuild/SOURCES
