@@ -33,9 +33,9 @@ BuildRoot: %{_tmpdir}/%{name}-%{version}-%{release}
 # ln -s $(pwd)/ ./_build/src/github.com/cfpb/rhobot
 # export GOPATH=$(pwd)/_build:%{gopath}
 
-export GOPATH=$(pwd)/playground/go
-export GOROOT=$(pwd)/playground/go
-export PATH=$(pwd)/playground/go/bin:$PATH
+export GOPATH=$(pwd)/go
+export GOROOT=$(pwd)/go
+export PATH=$(pwd)/go/bin:$PATH
 go build -o rhobot github.com/cfpb/rhobot
 
 %install
