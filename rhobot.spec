@@ -4,7 +4,7 @@ Release:        1
 Summary:        a database devops command line tool
 License:        GPLv3+
 URL:            https://github.com/cfpb/rhobot
-Source0:        rhobot-0.1.tar.gz
+Source0:        rhobot-RHOBOTVERSION.tar.gz
 
 ## TODO add source as direct github link
 #Source0:        https://github.com/cfpb/rhobot/archive/v%{version}.tar.gz
