@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
   <description/>
@@ -76,20 +75,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>lsb_release -a</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
       <command>
-        cp /artifacts/rhobotGolangDependencies.tar.gz $WORKSPACE/rhobotGolangDependencies.tar.gz mkdir $WORKSPACE/rhobot/go -p tar -xzf $WORKSPACE/rhobotGolangDependencies.tar.gz -C $WORKSPACE/rhobot
+        lsb_release -a cd rhobot-for-el6 /bin/bash rhobotSetup.sh /bin/bash rhobotRpmBuild.sh
       </command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>
-        wget --quiet -O go1.6.2.linux-amd64.tar.gz https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz tar -xzf go1.6.2.linux-amd64.tar.gz -C $WORKSPACE/rhobot
-      </command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>cd rhobot-for-el6 /bin/bash rhobotRpmBuild.sh</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
