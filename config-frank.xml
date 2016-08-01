@@ -87,7 +87,7 @@
     </hudson.plugins.ansicolor.AnsiColorBuildWrapper>
     <EnvInjectBuildWrapper plugin="envinject@1.92.1">
       <info>
-        <propertiesContent>GOROOT=$WORKSPACE/rhobot/go PATH=$PATH:$GOROOT/bin</propertiesContent>
+        <propertiesContent>RHOBOTVERSION=0.2.1</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
