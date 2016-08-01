@@ -4,6 +4,7 @@ set -x #echo on
 RHOBOTVERSION=0.2
 sed -i -e s#"RHOBOTVERSION"#"${RHOBOTVERSION}"#g rhobot.spec
 
+rm -rf rhobot-${RHOBOTVERSION}/
 cp -rpf -R ../rhobot rhobot-${RHOBOTVERSION}/
 tar -czf rhobot-${RHOBOTVERSION}.tar.gz rhobot-${RHOBOTVERSION}/
 
