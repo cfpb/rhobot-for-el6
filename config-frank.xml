@@ -87,7 +87,7 @@
     </hudson.plugins.ansicolor.AnsiColorBuildWrapper>
     <EnvInjectBuildWrapper plugin="envinject@1.92.1">
       <info>
-        <propertiesContent>RHOBOTVERSION=0.2.1</propertiesContent>
+        <propertiesContent>RHOBOTVERSION=0.2.1 GOLANGDEPDIR=/tmp</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
