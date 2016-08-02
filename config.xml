@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description></description>
+  <description/>
   <keepDependencies>false</keepDependencies>
   <properties>
     <jenkins.model.BuildDiscarderProperty>
@@ -13,7 +12,7 @@
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.28"/>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.15.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.16.0">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.1">
@@ -22,7 +21,7 @@
   </properties>
   <scm class="org.jenkinsci.plugins.multiplescms.MultiSCM" plugin="multiple-scms@0.6">
     <scms>
-      <hudson.plugins.git.GitSCM plugin="git@2.4.4">
+      <hudson.plugins.git.GitSCM plugin="git@2.5.2">
         <configVersion>2</configVersion>
         <userRemoteConfigs>
           <hudson.plugins.git.UserRemoteConfig>
@@ -31,22 +30,22 @@
         </userRemoteConfigs>
         <branches>
           <hudson.plugins.git.BranchSpec>
-            <name>tags/v0.1</name>
+            <name>tags/v0.2.1</name>
           </hudson.plugins.git.BranchSpec>
         </branches>
         <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
         <submoduleCfg class="list"/>
         <extensions>
           <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
-            <relativeTargetDir>playground/go/src/github.com/cfpb/rhobot</relativeTargetDir>
+            <relativeTargetDir>rhobot/go/src/github.com/cfpb/rhobot</relativeTargetDir>
           </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
         </extensions>
       </hudson.plugins.git.GitSCM>
-      <hudson.plugins.git.GitSCM plugin="git@2.4.4">
+      <hudson.plugins.git.GitSCM plugin="git@2.5.2">
         <configVersion>2</configVersion>
         <userRemoteConfigs>
           <hudson.plugins.git.UserRemoteConfig>
-            <url>https://github.com/cfpb/rhobot-for-el6.git</url>
+            <url>https://github.com/frank0631/rhobot-for-el6.git</url>
           </hudson.plugins.git.UserRemoteConfig>
         </userRemoteConfigs>
         <branches>
@@ -58,7 +57,7 @@
         <submoduleCfg class="list"/>
         <extensions>
           <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
-            <relativeTargetDir></relativeTargetDir>
+            <relativeTargetDir>rhobot-for-el6</relativeTargetDir>
           </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
         </extensions>
       </hudson.plugins.git.GitSCM>
@@ -69,35 +68,16 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.19.1">
-      <spec></spec>
+    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.20.0">
+      <spec/>
     </com.cloudbees.jenkins.GitHubPushTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>lsb_release -a</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>cp /artifacts/rhobotGolangDependencies.tar.gz $WORKSPACE/rhobotGolangDependencies.tar.gz
-mkdir $WORKSPACE/playground/go -p
-tar -xzf $WORKSPACE/rhobotGolangDependencies.tar.gz -C $WORKSPACE/playground
-</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>wget --quiet -O go1.6.2.linux-amd64.tar.gz https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
-tar -xzf go1.6.2.linux-amd64.tar.gz -C $WORKSPACE/playground</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>cp -rpf -R playground rhobot-0.1/
-tar -czf rhobot-0.1.tar.gz rhobot-0.1/
-
-mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
-cp rhobot.spec rpmbuild/SPECS/rhobot.spec
-mv rhobot-0.1.tar.gz rpmbuild/SOURCES
-
-cd rpmbuild/
-rpmbuild --define &quot;_topdir `pwd`&quot; -ba SPECS/rhobot.spec</command>
+      <command>
+        lsb_release -a cd rhobot-for-el6 /bin/bash rhobotSetup.sh /bin/bash rhobotRpmBuild.sh
+      </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
@@ -107,8 +87,7 @@ rpmbuild --define &quot;_topdir `pwd`&quot; -ba SPECS/rhobot.spec</command>
     </hudson.plugins.ansicolor.AnsiColorBuildWrapper>
     <EnvInjectBuildWrapper plugin="envinject@1.92.1">
       <info>
-        <propertiesContent>GOROOT=$WORKSPACE/playground/go
-PATH=$PATH:$GOROOT/bin</propertiesContent>
+        <propertiesContent>RHOBOTVERSION=0.2.1 GOLANGDEPDIR=/artifacts</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
