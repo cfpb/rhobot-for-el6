@@ -1,10 +1,10 @@
 Name:           rhobot
-Version:        0.1
+Version:        RHOBOTVERSION
 Release:        1
 Summary:        a database devops command line tool
 License:        GPLv3+
 URL:            https://github.com/cfpb/rhobot
-Source0:        rhobot-0.1.tar.gz
+Source0:        rhobot-RHOBOTVERSION.tar.gz
 
 ## TODO add source as direct github link
 #Source0:        https://github.com/cfpb/rhobot/archive/v%{version}.tar.gz
@@ -33,9 +33,9 @@ BuildRoot: %{_tmpdir}/%{name}-%{version}-%{release}
 # ln -s $(pwd)/ ./_build/src/github.com/cfpb/rhobot
 # export GOPATH=$(pwd)/_build:%{gopath}
 
-export GOPATH=$(pwd)/playground/go
-export GOROOT=$(pwd)/playground/go
-export PATH=$(pwd)/playground/go/bin:$PATH
+export GOPATH=$(pwd)/go
+export GOROOT=$(pwd)/go
+export PATH=$(pwd)/go/bin:$PATH
 go build -o rhobot github.com/cfpb/rhobot
 
 %install
@@ -47,4 +47,3 @@ install -p -m 0755 ./rhobot %{buildroot}%{_bindir}/rhobot
 ## TODO create these files for rhobot rpm repo
 #%doc AUTHORS CHANGELOG.md CONTRIBUTING.md FIXME LICENSE MAINTAINERS NOTICE README.md
 %{_bindir}/rhobot
-

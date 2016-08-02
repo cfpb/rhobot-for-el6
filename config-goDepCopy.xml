@@ -1,0 +1,30 @@
+<project>
+  <actions/>
+  <description/>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.28"/>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.16.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.1">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>
+        #!/bin/bash tmpGoDep=/tmp/rhobotGolangDependencies.tar.gz artGoDep=/artifacts/rhobotGolangDependencies.tar.gz if [ -f $artGoDep ]; then echo "Backup '$artGoDep' into Workspace '$WORKSPACE'" cp $artGoDep "art.rhobotGolangDependencies.tar.gz.$(date +"%Y-%m-%d-%H:%M")" else echo "The File '$artGoDep' Does Not Exist" fi if [ -f $tmpGoDep ]; then echo "Backup '$tmpGoDep' into Workspace '$WORKSPACE'" cp $tmpGoDep "tmp.rhobotGolangDependencies.tar.gz.$(date +"%Y-%m-%d-%H:%M")" echo "Copy '$tmpGoDep' to '$artGoDep' overwriting" \cp -f $tmpGoDep $artGoDep else echo "The File '$tmpGoDep' Does Not Exist" fi
+      </command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
