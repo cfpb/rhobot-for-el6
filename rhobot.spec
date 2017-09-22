@@ -35,7 +35,7 @@ BuildRoot: %{_tmpdir}/%{name}-%{version}-%{release}
 
 export GOPATH=$(pwd)/gopath
 export GOROOT=$(pwd)/goroot
-export PATH=$(pwd)/gopath/bin:$PATH
+export PATH=$(pwd)/goroot/bin:$PATH
 go get github.com/tools/godep
 cd github.com/cfpb/rhobot; godep restore
 go build -o rhobot github.com/cfpb/rhobot
