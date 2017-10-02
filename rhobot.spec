@@ -33,19 +33,20 @@ BuildRoot: %{_tmpdir}/%{name}-%{version}-%{release}
 # ln -s $(pwd)/ ./_build/src/github.com/cfpb/rhobot
 # export GOPATH=$(pwd)/_build:%{gopath}
 
+export WORKDIR=$(pwd)
 export GOPATH=$(pwd)/gopath
 export GOROOT=$(pwd)/go
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
-which go
 go get github.com/tools/godep
 cd $GOPATH/src/github.com/cfpb/rhobot
 godep restore
 go build -o rhobot
+cp rhobot $WORKDIR
 
 %install
 install -d %{buildroot}%{_bindir}
-install -p -m 0755 ./rhobot %{buildroot}%{_bindir}/rhobot
+install -p -m 0755 rhobot %{buildroot}%{_bindir}/rhobot
 
 %files
 %defattr(-,root,root,-)
