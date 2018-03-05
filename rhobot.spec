@@ -46,7 +46,7 @@ cp rhobot $WORKDIR
 
 %install
 install -d %{buildroot}%{_bindir}
-install -p -m 0755 rhobot %{buildroot}%{_bindir}/rhobot
+install -p -m 0755 ./rhobot %{buildroot}%{_bindir}/rhobot
 
 %files
 %defattr(-,root,root,-)
