@@ -14,5 +14,6 @@ mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 cp rhobot.spec rpmbuild/SPECS/rhobot.spec
 mv rhobot-${RHOVERS}.tar.gz rpmbuild/SOURCES
 
+
 cd rpmbuild/
 rpmbuild --define "_topdir `pwd`" -ba SPECS/rhobot.spec
